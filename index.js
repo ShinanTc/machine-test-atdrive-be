@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const productRoutes = require('./routes/productRoutes');
 const connectDB = require('./config/db');
+const mainRoutes = require('./routes/mainRoutes');
 
 const app = express();
 
@@ -11,10 +11,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
+// Connect DB
 connectDB();
 
-// Routes
-app.use('/api/products', productRoutes);
+// Mount API base
+app.use('/api', mainRoutes);
 
 module.exports = app;
